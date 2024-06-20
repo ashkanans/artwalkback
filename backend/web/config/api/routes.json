@@ -1,0 +1,118 @@
+{
+  "base": "/api",
+  "routes": [
+    "/authenticate",
+    "/signup"
+  ],
+  "tsetmc": {
+    "base": "/tsetmc",
+    "routes": [
+      "/stockInfo"
+    ]
+  },
+  "codal": {
+    "base": "/codal",
+    "routes": [
+      "/symbols",
+      "/groups",
+      "/letters",
+      "/attachments"
+    ],
+    "notification": {
+      "base": "/notification",
+      "routes": [
+        "/periods",
+        "/filter"
+      ]
+    }
+  },
+  "services": {
+    "base": "/services",
+    "routes": [
+      "/file_to_word",
+      "/count_occurrences"
+    ]
+  },
+  "commodity": {
+    "base": "/commodity",
+    "bi": {
+      "base": "/bi",
+      "routes": [
+        "/ids",
+        "/list"
+      ]
+    },
+    "ir": {
+      "base": "/ir",
+      "routes": [
+        "/main_groups",
+        "/category_groups",
+        "/sub_category_groups",
+        "/producer_groups",
+        "/list",
+        "/currency",
+        "/contract_type"
+      ],
+      "amlak": {
+        "base": "/amlak",
+        "routes": [
+          "/list"
+        ]
+      },
+      "arzeh": {
+        "base": "/arzeh",
+        "routes": [
+          "/list"
+        ]
+      },
+      "bazare_mali": {
+        "base": "/bazare_mali",
+        "routes": [
+          "/list"
+        ]
+      },
+      "export": {
+        "base": "/export",
+        "routes": [
+          "/list"
+        ]
+      },
+      "future": {
+        "base": "/future",
+        "routes": [
+          "/list"
+        ]
+      },
+      "gold": {
+        "base": "/gold",
+        "routes": [
+          "/list"
+        ]
+      },
+      "monaghesat": {
+        "base": "/monaghesat",
+        "routes": [
+          "/list"
+        ]
+      },
+      "options_board": {
+        "base": "/options_board",
+        "routes": [
+          "/list"
+        ]
+      },
+      "physical": {
+        "base": "/physical",
+        "routes": [
+          "/list"
+        ]
+      },
+      "premium": {
+        "base": "/premium",
+        "routes": [
+          "/list"
+        ]
+      }
+    }
+  }
+}

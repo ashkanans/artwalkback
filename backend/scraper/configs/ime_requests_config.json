@@ -1,0 +1,187 @@
+{
+  "scraper_type": "ime",
+  "update_frequency": "5",
+  "requests_urls": [
+    {
+      "name": "MainGroups",
+      "url": "/subsystems/ime/services/home/imedata.asmx/GetMainGroups",
+      "type": "ime",
+      "UpdateFrequency": "1",
+      "siteName": "ime",
+      "ResponseType": "Json",
+      "requestMethod": "POST",
+      "BaseUrl": "www.ime.co.ir",
+      "header": {
+        "Host": "www.ime.co.ir",
+        "Content-Length": "119",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+        "Accept": "text/plain, */*; q=0.01",
+        "Content-Type": "application/json; charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Origin": "https://www.ime.co.ir",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.ime.co.ir/offer-stat.html",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=1, i",
+        "Connection": "close"
+      },
+      "postParams": {
+        "Language": 8,
+        "fari": false
+      }
+    },
+    {
+      "name": "CategoryGroups",
+      "url": "/subsystems/ime/services/home/imedata.asmx/GetCatGroups",
+      "type": "ime",
+      "UpdateFrequency": "1",
+      "siteName": "ime",
+      "ResponseType": "Json",
+      "requestMethod": "POST",
+      "BaseUrl": "www.ime.co.ir",
+      "header": {
+        "Host": "www.ime.co.ir",
+        "Content-Length": "119",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+        "Accept": "text/plain, */*; q=0.01",
+        "Content-Type": "application/json; charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Origin": "https://www.ime.co.ir",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.ime.co.ir/offer-stat.html",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=1, i",
+        "Connection": "close"
+      },
+      "postParams": {
+        "Language": 8,
+        "fari": false,
+        "MainCat": 6,
+        "Cat": 7
+      }
+    },
+    {
+      "name": "SubCategoryGroups",
+      "url": "/subsystems/ime/services/home/imedata.asmx/GetSubCatGroups",
+      "type": "ime",
+      "UpdateFrequency": "1",
+      "siteName": "ime",
+      "ResponseType": "Json",
+      "requestMethod": "POST",
+      "BaseUrl": "www.ime.co.ir",
+      "header": {
+        "Host": "www.ime.co.ir",
+        "Content-Length": "119",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+        "Accept": "text/plain, */*; q=0.01",
+        "Content-Type": "application/json; charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Origin": "https://www.ime.co.ir",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.ime.co.ir/offer-stat.html",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=1, i",
+        "Connection": "close"
+      },
+      "postParams": {
+        "Language": 8,
+        "fari": false,
+        "MainCat": 1,
+        "Cat": 1,
+        "SubCat": 1
+      }
+    },
+    {
+      "name": "ProducerGroups",
+      "url": "/subsystems/ime/services/home/imedata.asmx/GetProducers",
+      "type": "ime",
+      "UpdateFrequency": "1",
+      "siteName": "ime",
+      "ResponseType": "Json",
+      "requestMethod": "POST",
+      "BaseUrl": "www.ime.co.ir",
+      "header": {
+        "Host": "www.ime.co.ir",
+        "Content-Length": "119",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+        "Accept": "text/plain, */*; q=0.01",
+        "Content-Type": "application/json; charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Origin": "https://www.ime.co.ir",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.ime.co.ir/offer-stat.html",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=1, i",
+        "Connection": "close"
+      },
+      "postParams": {
+        "Language": 8,
+        "fari": false
+      }
+    },
+    {
+      "name": "PhysicalTransaction",
+      "url": "/subsystems/ime/services/home/imedata.asmx/GetAmareMoamelatList",
+      "type": "ime",
+      "UpdateFrequency": "1",
+      "siteName": "ime",
+      "ResponseType": "Json",
+      "requestMethod": "POST",
+      "BaseUrl": "www.ime.co.ir",
+      "header": {
+        "Host": "www.ime.co.ir",
+        "Content-Length": "119",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+        "Accept": "text/plain, */*; q=0.01",
+        "Content-Type": "application/json; charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Origin": "https://www.ime.co.ir",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.ime.co.ir/offer-stat.html",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=1, i",
+        "Connection": "close"
+      },
+      "postParams": {
+        "Language": 8,
+        "fari": false,
+        "GregorianFromDate": "1402/10/16",
+        "GregorianToDate": "1402/10/26",
+        "MainCat": 0,
+        "Cat": 0,
+        "SubCat": 0,
+        "Producer": 0
+      }
+    }
+  ],
+  "header": {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Connection": "keep-alive"
+  }
+}

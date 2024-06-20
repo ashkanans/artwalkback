@@ -1,0 +1,137 @@
+
+Public WorkbookIsOpening As Boolean
+
+Private Sub Workbook_Open()
+    WorkbookIsOpening = True
+    
+    Dim ws As Worksheet
+    For Each ws In ThisWorkbook.Worksheets
+        ws.Cells.Font.Name = "B Nazanin"
+        ws.Cells.Font.Size = 14
+        ws.Cells.HorizontalAlignment = xlCenter
+        
+        ws.Rows("2:3").Font.Bold = True
+        ws.Cells.EntireColumn.AutoFit
+        
+        ' Add 1000 separator to each cell with a number
+        Dim cell As Range
+        For Each cell In ws.UsedRange
+            If IsNumeric(cell.Value) Then
+                ' Check if the worksheet name contains the specific string
+                If InStr(ws.Name, ChrW(1604) & ChrW(1581) & ChrW(1592) & ChrW(1607)) > 0 Then
+                    ' If true, display two decimal places
+                    cell.NumberFormat = "#,##0.00"
+                Else
+                    ' If false, no decimal places
+                    cell.NumberFormat = "#,##0"
+                End If
+        
+                ' Convert the numeric value to a string
+                cell.Value = CStr(cell.Value)
+            End If
+        Next cell
+
+
+        If InStr(ws.Name, ChrW(1705) & ChrW(1583) & ChrW(1575) & ChrW(1604)) > 0 Then
+            ws.Columns("A").Font.Name = "B Titr"
+            ws.Columns("A").Font.Size = 12
+            ws.Rows("2:3").Font.Name = "B Titr"
+            ws.Rows("2:3").Font.Size = 12
+            
+            
+            ws.Columns("A").ColumnWidth = 60
+            ws.Columns("A").Font.Bold = True
+            ws.Columns("A").HorizontalAlignment = xlRight
+            
+            Dim rng As Range
+            Set rng = ws.Columns("A").Find(ChrW(1589) & ChrW(1606) & ChrW(1593) & ChrW(1578))
+            Dim IndustyIndex As Integer
+            IndustyIndex = rng.Row
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Name = "B Titr"
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Size = 12
+            
+        End If
+        
+         If InStr(ws.Name, ChrW(1593) & ChrW(1605) & ChrW(1604) & ChrW(1705) & ChrW(1585) & ChrW(1583)) > 0 Then
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Name = "B Nazanin"
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Size = 14
+            
+            ws.Columns("A").Font.Name = "B Titr"
+            ws.Columns("A").Font.Size = 12
+            ws.Rows("2:3").Font.Name = "B Titr"
+            ws.Rows("2:3").Font.Size = 12
+         
+            ws.Columns("A").Font.Bold = True
+            ws.Columns("A").HorizontalAlignment = xlRight
+            ws.Cells.EntireColumn.AutoFit
+            
+        End If
+        
+          If InStr(ws.Name, ChrW(1587) & ChrW(1607) & ChrW(1575) & ChrW(1605)) > 0 Then
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Name = "B Nazanin"
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Size = 14
+            
+            ws.Columns("A").Font.Name = "B Nazanin"
+            ws.Columns("A").Font.Size = 14
+            ws.Rows("2:3").Font.Name = "B Titr"
+            ws.Rows("2:3").Font.Size = 12
+         
+          
+            ws.Columns("A").HorizontalAlignment = xlCenter
+            ws.Columns("A").Font.Bold = False
+            ws.Rows("2:3").Font.Bold = True
+            ws.Cells.EntireColumn.AutoFit
+            
+        End If
+        
+        If InStr(ws.Name, ChrW(1604) & ChrW(1581) & ChrW(1592) & ChrW(1607)) > 0 Then
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Name = "B Nazanin"
+            ws.Rows(IndustyIndex & ":" & IndustyIndex + 1).Font.Size = 14
+            
+            ws.Columns("A").Font.Name = "B Titr"
+            ws.Columns("A").Font.Size = 12
+            ws.Rows("1:1").Font.Name = "Calibri Light"
+            ws.Rows("1:1").Font.Size = 12
+            
+            
+            ws.Columns("A").HorizontalAlignment = xlRight
+            ws.Rows("2:3").Font.Bold = False
+            ws.Columns("A").Font.Bold = True
+            ws.Cells.EntireColumn.AutoFit
+            ws.Rows("1:1").Font.Bold = True
+            
+        End If
+        
+    Next ws
+    WorkbookIsOpening = False
+End Sub
+
+' WorkbookIsOpening = False
+
+Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
+    If WorkbookIsOpening Then Exit Sub ' Exit if the workbook is opening
+    
+    Dim col As Range
+    ' Loop through each column in the range that has been changed
+    For Each col In Target.Columns
+        ' Check if the column contains a value
+        If Application.WorksheetFunction.CountA(col) > 0 Then
+            ' Run Text to Columns on the column
+            col.TextToColumns Destination:=col, DataType:=xlDelimited, _
+                TextQualifier:=xlDoubleQuote, ConsecutiveDelimiter:=False, Tab:=True, _
+                Semicolon:=False, Comma:=False, Space:=False, Other:=False
+        End If
+    Next col
+End Sub
+
+
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
+    WorkbookIsOpening = False ' Reset the flag before the workbook is saved
+End Sub
+
+
+
+
+
+
+

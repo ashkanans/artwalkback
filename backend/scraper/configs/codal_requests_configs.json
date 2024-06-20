@@ -1,0 +1,105 @@
+{
+  "scraper_type": "codal",
+  "update_frequency": "5",
+  "requests_urls": [
+    {
+      "name": "LetterHeaders",
+      "url": "",
+      "type": "id",
+      "siteName": "codal",
+      "ResponseType": "None",
+      "BaseUrl": "",
+      "exception-ids": "",
+      "header": {
+      }
+    },{
+      "name": "InventoryLetterHeaders",
+      "url": "",
+      "type": "id",
+      "siteName": "codal",
+      "ResponseType": "None",
+      "BaseUrl": "",
+      "exception-ids": "",
+      "header": {
+      }
+    },
+    {
+      "name": "LetterCells",
+      "type": "codal_letters_database",
+      "UpdateFrequency": "1",
+      "siteName": "codal",
+      "ResponseType": "Html",
+      "financial_years": [
+        "۱۳۹۸",
+        "۱۳۹۹",
+        "۱۴۰۰",
+        "۱۴۰۱",
+        "۱۴۰۲"
+      ],
+      "BaseUrl": "https://www.codal.ir",
+      "header": {
+        "Host": "www.codal.ir",
+        "Sec-Ch-Ua": "\"Chromium\";v=\"121\", \"Not A(Brand\";v=\"99\"",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.85 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-User": "?1",
+        "Sec-Fetch-Dest": "document",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=0, i",
+        "Connection": "close"
+      }
+    },
+    {
+      "name": "Letter",
+      "url": "/api/search/v2/q?&Audited=true&AuditorRef=-1&Category=-1&Childs=true&CompanyState=1&CompanyType=1&Consolidatable=true&IsNotAudited=false&Isic=131001&Length=-1&LetterType=-1&Mains=true&NotAudited=true&NotConsolidatable=true&PageNumber=1&Publisher=false&Symbol={id}&TracingNo=-1&search=true'",
+      "type": "id",
+      "siteName": "codal",
+      "requestMethod": "GET",
+      "ResponseType": "Json",
+      "BaseUrl": "https://search.codal.ir",
+      "header": {
+        "Host": "search.codal.ir",
+        "Sec-Ch-Ua": "\"Chromium\";v=\"121\", \"Not A(Brand\";v=\"99\"",
+        "Accept": "application/json, text/plain, */*",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.85 Safari/537.36",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Origin": "https://codal.ir",
+        "Sec-Fetch-Site": "same-site",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://codal.ir/",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=1, i",
+        "Connection": "close"
+      },
+      "postParams": {
+        "Audited": "true",
+        "AuditorRef": "-1",
+        "Category": "1",
+        "Childs": "true",
+        "CompanyState": "0",
+        "CompanyType": "-1",
+        "Consolidatable": "true",
+        "IsNotAudited": "false",
+        "Isic": "131003",
+        "Length": "-1",
+        "LetterType": "-1",
+        "Mains": "true",
+        "NotAudited": "true",
+        "NotConsolidatable": "true",
+        "PageNumber": "1",
+        "Publisher": "false",
+        "Symbol": "کگل",
+        "TracingNo": "-1",
+        "search": "true"
+      }
+    }
+  ]
+}

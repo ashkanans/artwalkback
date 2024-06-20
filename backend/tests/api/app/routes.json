@@ -1,0 +1,116 @@
+{
+  "base": "/api",
+  "routes": [
+    "/authenticate",
+    "/signup"
+  ],
+  "child": {
+    "app": {
+      "base": "/app",
+      "routes": [
+        "/chartDataExcel",
+        "/chartData",
+        "/chartId"
+      ]
+    },
+    "tsetmc": {
+      "base": "/tsetmc",
+      "routes": [
+        "/stockInfo",
+        "/indexInfo",
+        "/enteredMoney",
+        "/returnInfo",
+        "/importantFilters",
+        "/option"
+      ]
+    },
+    "codal": {
+      "base": "/codal",
+      "routes": [
+        "/symbols",
+        "/groups",
+        "/letters",
+        "/attachments"
+      ],
+      "child": {
+        "notification": {
+          "base": "/notification",
+          "routes": [
+            "/periods",
+            "/configuration",
+            "/notifications"
+          ]
+        }
+      },
+      "child": {
+        "publishers": {
+          "base": "/publishers",
+          "routes": [
+            "/symbols",
+            "/configuration",
+            "/notifications"
+          ]
+        }
+      }
+    },
+    "services": {
+      "base": "/services",
+      "routes": [
+        "/file_to_text",
+        "/count_occurrences"
+      ]
+    },
+    "commodity": {
+      "base": "/commodity",
+      "bi": {
+        "base": "/bi",
+        "routes": [
+          "/ids",
+          "/list"
+        ]
+      },
+      "ime": {
+        "base": "/ime",
+        "routes": [
+          "/main_groups",
+          "/category_groups",
+          "/sub_category_groups",
+          "/producer_groups",
+          "/list",
+          "/currency",
+          "/contract_type"
+        ],
+        "amlak": {
+          "base": "/amlak"
+        },
+        "arzeh": {
+          "base": "/arzeh"
+        },
+        "bazare_mali": {
+          "base": "/bazare_mali"
+        },
+        "export": {
+          "base": "/export"
+        },
+        "future": {
+          "base": "/future"
+        },
+        "gold": {
+          "base": "/gold"
+        },
+        "monaghesat": {
+          "base": "/monaghesat"
+        },
+        "options_board": {
+          "base": "/options_board"
+        },
+        "physical": {
+          "base": "/physical"
+        },
+        "premium": {
+          "base": "/premium"
+        }
+      }
+    }
+  }
+}

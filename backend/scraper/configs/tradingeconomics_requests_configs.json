@@ -1,0 +1,95 @@
+{
+  "scraper_type": "tradingeconomics",
+  "update_frequency": "5",
+  "requests_urls": [
+    {
+      "name": "Categories",
+      "url": "/commodities",
+      "type": "tradingeconomicsCategories",
+      "siteName": "tradingeconomics",
+      "ResponseType": "Html",
+      "BaseUrl": "https://tradingeconomics.com",
+      "header": {
+        "Host": "tradingeconomics.com",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Cookie": "",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36"
+      }
+    },
+    {
+      "name": "Profiles",
+      "url": "{id}",
+      "type": "id",
+      "siteName": "tradingeconomics",
+      "ResponseType": "Html",
+      "BaseUrl": "https://tradingeconomics.com",
+      "header": {
+        "Host": "tradingeconomics.com",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Cookie": "",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36"
+      }
+    },
+    {
+      "name": "ProfilesHistory",
+      "url": "/chart/{type}?interval=1d&span=10y&securify=new&url={link}&AUTH={auth}&ohlc=0",
+      "type": "multi",
+      "siteName": "tradingeconomics",
+      "ResponseType": "Json",
+      "BaseUrl": "https://markets.tradingeconomics.com",
+      "header": {
+        "Host": "markets.tradingeconomics.com",
+        "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+        "Accept": "application/json, text/javascript, */*",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36",
+        "Sec-Ch-Ua-Platform": "Windows",
+        "Origin": "https://tradingeconomics.com",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-User": "?1",
+        "Referer": "https://tradingeconomics.com/",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9"
+      }
+    },
+    {
+      "name": "AuthorizationHeader",
+      "url": "",
+      "type": "",
+      "siteName": "tradingeconomics",
+      "ResponseType": "Json",
+      "BaseUrl": "https://markets.tradingeconomics.com",
+      "header": {
+        "Sec-Ch-Ua": "\"Chromium\";v=\"121\", \"Not A(Brand\";v=\"99\"",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.160 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-User": "?1",
+        "Sec-Fetch-Dest": "document",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Priority": "u=0, i"
+      }
+    }
+  ]
+}

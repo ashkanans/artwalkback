@@ -1,0 +1,7 @@
+{
+  "base": "/api",
+  "routes": [
+    "/authenticate",
+    "/signup"
+  ]
+}

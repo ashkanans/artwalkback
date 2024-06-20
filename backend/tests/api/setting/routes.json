@@ -1,0 +1,12 @@
+{
+  "base": "/api",
+  "child": {
+    "setting": {
+      "base": "/setting",
+      "routes": [
+        "/set",
+        "/get"
+      ]
+    }
+  }
+}

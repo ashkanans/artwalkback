@@ -1,0 +1,1220 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            %
+%                    Read constant commands                  %
+%                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{resources/constants/images path/IMAGE_PATH.tex}
+\input{resources/constants/images path/IMAGE_NAMES.tex}
+\input{resources/constants/images path/IMAGE_REFS.tex}
+\input{resources/constants/configuration/GENERAL_CONFIGURATION.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            %
+%                       Custom Commands                      %
+%                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Creates a new command for adding an animated GIF to the document.
+% Usage: \sectionCenteredgif[optional scale]{GIF file name}{caption text}{label}
+% - The optional scale argument (default 0.9) can be used to adjust the width of the GIF.
+% - The GIF file should be in the same directory as the LaTeX document.
+% - The caption text should describe the contents of the GIF.
+% - The label should be a unique identifier for the GIF, used for referencing it later in the text.
+
+\newcommand{\sectionCenteredgGif}[4][0.9]{
+	\begin{figure}[H]
+		\centering
+		\animategraphics[width=#1\linewidth,autoplay,loop]{12}{#2}{0}{49}
+		\caption{#3}
+		\label{fig:#4}
+	\end{figure}
+}
+
+
+% Usage: \imageCaptionTable{image path}{image caption}{image label}{text}
+% - The first argument should be the path to the image file in any format.
+% - The second argument should be the caption of the image to be displayed.
+% - The third argument should be the label of the image.
+% - The fourth argument should be the text to be displayed on the right side of the image.
+% - The resulting table will have the image displayed on the left (with the caption and label) and the text on the right.
+
+\newcommand{\imageCaptionTable}[4]{%
+	\begin{tabular}{l l}
+		\includegraphics[width=0.5\textwidth, caption={#2}, label={#3}]{#1} & \centering
+		\begin{varwidth}[t]{0.8\textwidth}
+			\configuratedText{#4}
+		\end{varwidth}
+	\end{tabular}
+}
+
+% Inserts a small image in the middle of a text
+% Usage: \smallimage[optional scale]{image file name}
+% - The optional scale argument (default 0.5) can be used to adjust the size of the image.
+% - The image file should be in the same directory as the LaTeX document.
+
+\newcommand{\smallimage}[2][0.03]{
+	\includegraphics[width=#1\linewidth]{#2}
+}
+
+
+% Creates a new figure with an image centered on the page, and adds a caption and label for reference.
+% Usage: \sectionCenteredfigure[optional scale]{image file name}{caption text}{label}
+% - The optional scale argument (default 0.9) can be used to adjust the width of the image.
+% - The image file should be in the same directory as the LaTeX document.
+% - The caption text should describe the contents of the image.
+% - The label should be a unique identifier for the figure, used for referencing it later in the text.
+
+\newcommand{\sectionCenteredfigure}[4][0.9]{
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=#1\linewidth]{#2}}
+		\caption{#3}
+		\label{fig:#4}
+	\end{figure}
+}
+
+
+% Creates a new block of justified text with a specified font and font size.
+% Usage: \generalText{font family}{font size}{text}
+% - The font family argument specifies the font to be used (e.g., Times New Roman, Arial, etc.).
+% - The font size argument specifies the size of the font (e.g., 12pt, 14pt, etc.).
+% - The text argument should contain the text to be justified.
+% - The resulting block of text will be fully justified (i.e., aligned with both the left and right margins).
+
+\newcommand{\customText}[3]{%
+	\par\begingroup
+	\setlength{\parindent}{0pt}%
+	\linespread{1.3}%
+	\fontsize{#2}{#2}%
+	\fontfamily{#1}\selectfont #3%
+	\par\endgroup%
+}
+
+% Creates a new block of justified text with the font size and font style of configuration file.
+% Usage: \generalText{text}
+% - The font family argument is specfied by \userManualSimpleTextStyle
+% - The font size argument is specified by \userManualSimpleTextSize
+% - The text argument should contain the text to be justified.
+% - The resulting block of text will be fully justified (i.e., aligned with both the left and right margins).
+
+\newcommand{\configuratedText}[1]{%
+	\par\begingroup
+	\setlength{\parindent}{0pt}%
+	\linespread{1.3}%
+	\selectfont #1%
+	\par\endgroup%
+}
+
+% Defines a new command for referencing figures.
+% Usage: \figref{label}
+% - The argument should be the label of the figure to be referenced.
+% - The resulting output will be in the format "(Figure <number>)", where <number> is the number of the referenced figure.
+% - The label should be defined using \label{fig:<label>} command in the figure environment.
+% - The \hyperref command creates a hyperlink to the referenced figure.
+% - The \ref* command produces only the number of the referenced figure, without the preceding "Figure" text.
+
+\newcommand{\figref}[1]{(\hyperref[fig:#1]{Figure \ref*{fig:#1}})}
+
+% Creates a new table with an icon and its name.
+% Usage: \customTable{icon path}{icon name}
+% - The first argument should be the path to the icon file in PNG format.
+% - The second argument should be the name of the icon to be displayed.
+% - The resulting table will have the icon displayed on the left and its name on the right.
+
+\newcommand{\iconNameTable}[2]{%
+	\begin{tabular}{l l}
+		\includegraphics[width=0.03\textwidth]{#1} & \centering
+		\begin{varwidth}[t]{0.8\textwidth}
+			\configuratedText{#2}
+		\end{varwidth}
+	\end{tabular}
+}
+
+% Creates a new table with an icon and its name.
+% Usage: \customTable{icon path}{icon name}
+% - The first argument should be a text.
+% - The second argument should be a text.
+% - The resulting table will have the text displayed on the left and a text on the right.
+
+\newcommand{\textTextTable}[3][2cm]{%
+	\begin{tabular}{p{#1} p{\dimexpr0.90\textwidth-#1}}
+		\configuratedText{#2}
+		&
+		\begin{varwidth}[t]{\linewidth}
+			\configuratedText{#3}
+		\end{varwidth}
+	\end{tabular}
+}
+
+% Creates a new table with an icon, its name, and its description.
+% Usage: \iconNameDescriptTable{icon path}{icon name}{icon description}
+% - The first argument should be the path to the icon file in PNG format.
+% - The second argument should be the name of the icon to be displayed.
+% - The third argument should be a description of the icon.
+% - The resulting table will have the icon displayed on the left, its name in the middle, and its description on the right.
+% - The table has three columns with widths of 0.1, 0.3, and 0.5 times the text width, respectively.
+% - The second and third columns are aligned to the left.
+
+\newcommand{\iconNameDescriptTable}[3]{%
+	\begin{tabular}{p{0.05\textwidth} p{0.2\textwidth} m{0.6\textwidth}}
+		\includegraphics[width=0.03\textwidth]{#1} & \raggedright \configuratedText{#2} & \justify \configuratedText{#3} \
+	\end{tabular}
+}
+
+% Creates a new table with an text, its name, and its description.
+% Usage: \textDescriptTable{text}{text name}{text description}
+% - The first argument should be the text to be displayed on the left.
+% - The second argument should be the name of the text.
+% - The third argument should be a description of the text.
+% - The resulting table will have the text displayed on the left, its name in the middle, and its description on the right.
+% - The table has three columns with widths of 0.1, 0.3, and 0.5 times the text width, respectively.
+% - The second and third columns are aligned to the left.
+
+\newcommand{\textDescriptTable}[3]{%
+	\begin{tabular}{m{0.1\textwidth} m{0.1\textwidth} m{0.5\textwidth}}
+		\raggedright \configuratedText{#1} & \raggedright \configuratedText{#2} & \raggedright \configuratedText{#3} \
+	\end{tabular}
+}
+
+% Creates a new block of two columns with an image on the left and justified text on the right.
+% Usage: \twocolumns{optional scale}{image file name}{caption text}{font family}{font size}{text}
+
+% - 1: The optional scale argument (default 0.9) can be used to adjust the width of the image.
+% - 2: The image file should be in the same directory as the LaTeX document.
+% - 3: The caption text should describe the contents of the image.
+% - 4: The font family argument specifies the font to be used (e.g., Times New Roman, Arial, etc.).
+% - 5: The font size argument specifies the size of the font (e.g., 12pt, 14pt, etc.).
+% - 6: The text argument should contain the text to be justified.
+
+\newcommand{\twoColumns}[6]{
+	\begin{minipage}[t]{0.50\textwidth}
+		\customText{#4}{#5}{#6}
+	\end{minipage}\hfill
+	\begin{minipage}[r]{0.45\textwidth}
+
+	\end{minipage}
+}
+
+\documentclass[12]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tocloft}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{times}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{varwidth}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+\usepackage{todonotes}
+\usepackage{tocloft}
+\usepackage{changepage}
+\usepackage{animate}
+\usepackage{dirtree}
+
+\cftsetindents{section}{1.5em}{5.0em}
+\cftsetindents{subsection}{2em}{5.0em}
+\cftsetindents{subsubsection}{3em}{5.0em}
+
+% Use the new command to set the font sizes and titleformat settings
+\myheadingstyles
+
+% Customize hyperlinks in the document
+\hypersetup{
+	colorlinks=true, % enable colored hyperlinks
+	linkcolor=blue, % set the color of internal links to black
+	filecolor=magenta, % set the color of links to local files to magenta
+	urlcolor=blue, % set the color of links to URLs to blue
+	bookmarks=true, % enable the creation of bookmarks in the PDF file
+}
+
+\geometry{
+	a4paper, % set paper size to A4
+	left=2cm, % set left margin to 2cm
+	right=2cm, % set right margin to 2cm
+	top=2.5cm, % set top margin to 2.5cm
+	bottom=2.5cm % set bottom margin to 2.5cm
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            %
+%                    Document Starts Here                    %
+%                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+	\begin{center}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.8\linewidth]{\cnsFiveTwelve}
+		\end{figure}
+		\vspace{1cm}
+		{\fontsize{28}{34}\selectfont \textbf{Technical Documentation}}
+	\end{center}
+
+	\vspace{1cm}
+
+	\begin{center}
+	{\fontsize{22}{28}\selectfont \textbf{Capital Marketing Dashboard
+
+	}}
+	\end{center}
+
+	\vspace{1cm}
+
+	\textcolor{blue!60!black}{\rule{\linewidth}{2pt}}
+
+	\vspace{10cm}
+
+	\begin{center}
+	\textbf{\today}
+	\end{center}
+
+	\thispagestyle{empty}
+
+	\newpage
+
+	\myTOC
+
+	\newpage
+	\section{Introduction}\label{sec:intro}
+	\section{Core Architecture}
+\configuratedText{	The backend of our web application follows a modular structure to ensure scalability and maintainability. The core architecture can be visualized as follows:
+
+	\dirtree{%
+	.1 C:.
+	.2 database\_config.
+	.3 export.
+	.4 excel.
+	.3 lib.
+	.3 scraper.
+	.4 cbi.
+	.5 Inflation.
+	.6 dao.
+	.6 model.
+	.6 service.
+	.4 codal.
+	.5 dao.
+	.5 model.
+	.5 service.
+	.4 fipiran.
+	.5 dao.
+	.5 model.
+	.5 service.
+	.4 ime.
+	.5 dao.
+	.5 model.
+	.5 service.
+	.4 realtimedata.
+	.5 dao.
+	.5 model.
+	.5 service.
+	.4 scrapers.
+	.5 cbi.
+	.5 codal.
+	.5 fipiran.
+	.5 ime.
+	.5 jobs.
+	.5 realtimedata.
+	.5 tgju.
+	.5 tradingeconomics.
+	.5 tsetmc.
+	.5 url\_builder.
+	}
+
+
+	The backend is divided into several main modules, each responsible for a specific set of functionalities. These modules include:
+
+	\begin{itemize}
+	  \item \textbf{Database Configuration:} Contains configurations for connecting to the database.
+	  \item \textbf{Export:} Handles exporting data, with subdirectories for different export formats like Excel.
+	  \item \textbf{Lib:} Houses common libraries and utilities used across the application.
+	  \item \textbf{Scraper:} This directory contains modules for scraping data from various sources, organized by the source name (e.g., \texttt{cbi}, \texttt{codal}, etc.).
+	  \item \textbf{Utils:} Holds utility functions for different purposes such as exporting and string manipulation.
+	\end{itemize}}
+
+	\newpage
+	\section{Scraper}
+	\configuratedText{Each scrpare module, comprises three main components: Models, Data Access Objects (DAOs), and Services.
+	In the following, a list of all the sources scraped and saved in the database is written.
+	Also in the Models section you can find an image of the website being scraped. Moreover, you can find the TYPE of the scraping using the following list:
+	\begin{itemize}
+		\item API $\rightarrow$ The data is retrived using the API
+		\item HTML $\rightarrow$ The data is retrived by scraping the page HTML content
+		\item Selenium $\rightarrow$ The webpage is rendered and then the data is retrived by scraping the page HTML content
+
+	\end{itemize}
+
+	Note that in the database, the name of the table corresponds to the name of model.
+
+	\subsection{Architecture}
+	\subsubsection{Models}
+	\configuratedText{The models in each scraper module define the structure of the data entities being scraped and stored in the database. Each model corresponds to a specific data block extracted from the source website.}
+
+	\subsubsection{DAOs}
+	\configuratedText{The DAOs in each scraper module handle the data access layer, interfacing with the database to store and retrieve information. Each DAO is responsible for a specific data block and table in the database.}
+
+	\subsubsection{Services}
+
+	The services in each scraper module contain the business logic for processing and manipulating the scraped data before storing it in the database. Each service corresponds to a specific DAO and provides methods for data transformation and validation.
+
+	\subsubsection{Scrapers}
+
+	In addition to the DAOs, Models, and Services, each data block in each scraper module has a corresponding scraper responsible for retrieving and processing the raw data from the source website. The scrapers interact with the website's APIs or scrape the HTML content directly to extract relevant information.
+
+	The \texttt{process\_data} method in each child scraper is responsible for processing the JSON data retrieved from the source website. It extracts the relevant information, performs any necessary data transformations, and updates the corresponding database table using the services provided.
+
+	\newpage
+	\subsection{TSETMC}
+
+	The \hyperlink{https://www.tsetmc.com/}{TSETMC} (Tehran Securities Exchange Technology Management Co.) scraper module is responsible for extracting and processing data related to securities exchanges from the TSETMC website.
+
+	The TSETMC website dynamically generates its content by rendering a static HTML page and fills it with data fetched from an API route with the URL: https://cdn.tsetmc.com.
+
+	Each page on the TSETMC website is assembled by concatenating this base URL with different routes, allowing access different data.
+
+	\subsubsection{Models}
+
+	\begin{itemize}
+
+      	\item \texttt{all\_indexes.py}
+
+      	Update Frequency (s): 5
+
+      	Type: API
+
+      	Route: /api/Index/GetIndexB1LastAll/All/id
+
+      	Where id is the flow as following:
+      	\begin{table}[H]
+      		\centering
+      		\label{tab:my-table}
+      		\begin{tabular}{|c|l|}
+      			\hline
+      			\textbf{id} & \textbf{Description}                                    \\ \hline
+      			0           & General - Common between Bourse and Farabourse           \\ \hline
+      			1           & Bourse                                                   \\ \hline
+      			2           & Farabourse                                               \\ \hline
+      			3           & Futures                                                  \\ \hline
+      			4           & Farabourse Base                                          \\ \hline
+      			5           & Farabourse Base (Not disclosed)                          \\ \hline
+      		\end{tabular}
+      	\end{table}
+
+      	\sectionCenteredfigure[0.9]{\AllIndexes}{All Indexes Daily for id: 2}{all-indexes}
+
+      	\item \texttt{best\_limits.py}
+
+      	Update Frequency (s): 5
+
+      	Type: API
+
+      	Route: /api/BestLimits/{id}
+
+      	Where id is instrument id.
+
+      	\sectionCenteredfigure[0.7]{\BestLimits}{Best Limits for id: 71483646978964608}{best-limits}
+
+      	\item \texttt{client\_type.py}
+
+      	Update Frequency (s): 5
+
+      	Type: API
+
+      	Route: /api/ClientType/GetClientType/{id}/1/0
+
+      	Where id is instrument id.
+
+      	\sectionCenteredfigure[0.5]{\ClientType}{Client Type for id: 71483646978964608}{client-type}
+
+      	\item \texttt{closing\_price\_daily\_list.py}
+
+      	Update Frequency (s): 86400 (daily)
+
+      	Type: API
+
+      	Route: /api/ClosingPrice/GetClosingPriceDailyList/id/constant
+
+      	Where id is the flow (as above) and constant is the number of rows required (i.e top 5, 10 or 20 ,etc.)
+
+      	\sectionCenteredfigure[0.9]{\ClosingPriceDaily}{Closing Price Daily for constant: 12 and id: 71483646978964608}{ins-effect}
+
+      	\item \texttt{closing\_price\_info.py}
+
+		Update Frequency (s): 5
+
+		Type: API
+
+		Route: /api/ClosingPrice/GetClosingPriceInfo/{id}
+
+		Where id is instrument id.
+
+		\sectionCenteredfigure[0.7]{\ClosingPriceInfo}{Closing Price for id: 71483646978964608}{closing-price-info}
+
+      	\item \texttt{closing\_price\_info\_adjusted.py}
+
+      	Update Frequency (s): 86400 (daily)
+
+      	All the closing prices adjusted based on TSEClient formulas.
+
+      	It reads the values from Closing Price Daily List and updates the prices
+
+      	Update Frequency (s): 86400 (daily)
+
+      	\item \texttt{codal\_announcement.py}
+
+      	Update Frequency (s): 86400 (daily)
+
+      	Type: API
+
+      	Route: /api/Codal/GetPreparedDataByInsCode/constant/id
+
+      	Where id is the flow (as above) and constant is the number of rows required (i.e top 5, 10 or 20 ,etc.)
+
+
+      	\sectionCenteredfigure[0.9]{\CodalLettersTse}{Codal letters having constant: 9 and id: 71483646978964608}{ins-effect}
+
+
+      	\item \texttt{instrument\_effect.py}
+
+   		Update Frequency (s): 5
+
+	  	Type: API
+
+	  	Route: /api/Index/GetInstEffect/0/id/constant
+
+	  	Where id is the flow (as above) and constant is the number of rows required (i.e top 5, 10 or 20 ,etc.)
+
+		\sectionCenteredfigure[0.9]{\InsEffect}{Instument Effect}{ins-effect}
+
+      	\item \texttt{instrument\_group.py}
+
+   		Update Frequency (s): None (Static)
+
+      	A static list of all the groups and sectors in TSETMC
+
+	  	Type: API
+
+ 		Route: /api/StaticData/GetStaticData
+
+      	\item \texttt{instrument\_info.py}
+
+	  	Type: API
+
+		Route: /api/Instrument/GetInstrumentInfo/{id}
+
+   		Update Frequency (s): 5
+
+		Where id is the instrument id (71483646978964608 for ZOB1)
+
+		\sectionCenteredfigure[0.4]{\InsInfo}{Market Overview}{market-overview}
+
+      	\item \texttt{market\_overview.py}
+
+   		Update Frequency (s): 5
+
+	  	Type: API
+
+	  	Route: /api/MarketData/GetMarketOverview/{id}
+
+	  	Where id is the flow as above.
+
+		\sectionCenteredfigure[0.4]{\MarketOverview}{Market Overview}{market-overview}
+
+      	\item \texttt{selected\_indexes.py}
+
+   		Update Frequency (s): 5
+
+	  	Type: API
+
+	  	Route: /api/Index/GetIndexB1LastAll/SelectedIndexes/id
+
+	  	Where id is the flow (as above)
+
+		\sectionCenteredfigure[0.9]{\SelectedIndexes}{Selected Indexes}{selected-indexes}
+
+   		\item \texttt{top\_trade\_most\_visited.py}
+
+   		Update Frequency (s): 5
+
+ 		Type: API
+
+		Route: /api/ClosingPrice/GetTradeTop/MostVisited/1/{constant}
+
+		Where id is the flow (as above) and constant is the number of rows required (i.e top 5, 10 or 20 ,etc.)
+
+ 		\sectionCenteredfigure[0.8]{\TopTradeMostVisited}{Top Trade Most Visited}{top-trade-most-visited}
+
+   		\item \texttt{tse\_mesg\_by\_flow.py}
+
+   		Update Frequency (s): 86400 (daily)
+
+		Type: API
+
+		Route: /api/Msg/GetMsgByFlow/id/constant
+
+		Where id is the flow (as above) and constant is the number of rows required (i.e top 5, 10 or 20 ,etc.)
+
+		\sectionCenteredfigure[0.9]{\MsgByFlow}{Messages for id: 0 and constant: 15}{msg-by-flow}
+
+   		\item \texttt{tse\_client\_instrument\_info.py}
+
+   		Update Frequency (s): 86400 (daily)
+
+   		Type: TSEClient Soap Service
+
+   		A list of all instruments with all their information
+
+   		\item \texttt{tse\_client\_share\_info.py}
+
+   		Update Frequency (s): 86400 (daily)
+
+   		Type: TSEClient Soap Service
+
+   		A list of daily Number of Shares New and Number of Shares Old for each instrument
+
+	\end{itemize}
+
+	\subsubsection{DAOs}
+
+	The following DAOs are included:
+
+	\begin{itemize}
+	    \item \texttt{all\_indexes\_dao.py}
+	    \item \texttt{best\_limits\_dao.py}
+	    \item \texttt{client\_type\_dao.py}
+	    \item \texttt{closing\_price\_daily\_list\_dao.py}
+	    \item \texttt{closing\_price\_info\_dao.py}
+	    \item \texttt{codal\_announcement\_dao.py}
+	    \item \texttt{instrument\_info\_dao.py}
+	    \item \texttt{instument\_group\_dao.py}
+	    \item \texttt{market\_overview\_dao.py}
+	    \item \texttt{selected\_indexes\_dao.py}
+	    \item \texttt{top\_trade\_most\_visited\_dao.py}
+	    \item \texttt{tse\_client\_instrument\_and\_share\_dao.py}
+	\end{itemize}
+
+	\subsubsection{Services}
+
+	The following services are included:
+
+	\begin{itemize}
+	    \item \texttt{all\_indexes\_service.py}
+	    \item \texttt{best\_limits\_service.py}
+	    \item \texttt{client\_type\_service.py}
+	    \item \texttt{closing\_price\_daily\_list\_service.py}
+	    \item \texttt{closing\_price\_info\_service.py}
+	    \item \texttt{codal\_announcement\_service.py}
+	    \item \texttt{instrument\_group\_service.py}
+	    \item \texttt{instrument\_info\_service.py}
+	    \item \texttt{market\_overview\_service.py}
+	    \item \texttt{selected\_indexes\_service.py}
+	    \item \texttt{top\_trade\_most\_visited\_service.py}
+	    \item \texttt{tse\_client\_instrument\_and\_share\_service.py}
+	\end{itemize}
+
+	\subsubsection{Scrapers}
+
+	The following scrapers are included:
+
+	\begin{itemize}
+	    \item \texttt{all\_indexes\_scraper.py}
+	    \item \texttt{best\_limits\_scraper.py}
+	    \item \texttt{client\_type\_scraper.py}
+	    \item \texttt{closing\_price\_daily\_list\_scraper.py}
+	    \item \texttt{closing\_price\_info\_scraper.py}
+	    \item \texttt{instrument\_info\_scraper.py}
+	    \item \texttt{market\_overview\_scraper.py}
+	    \item \texttt{prepared\_data\_by\_ins\_code\_scraper.py}
+	    \item \texttt{selected\_indexes\_scraper.py}
+	    \item \texttt{static\_data\_scraper.py}
+	    \item \texttt{trade\_top\_most\_visited\_scraper.py}
+	    \item \texttt{tse\_client\_scraper.py}
+	\end{itemize}
+
+
+
+	\newpage
+	\subsection{TGJU}
+	The \hyperlink{https://www.tgju.org}{TGJU} (Tehran Gold, Jewelry, and Coin Exchange) scraper module is responsible for extracting and processing data related to gold, jewelry, and coin prices from the TGJU website.
+
+	The TGJU website dynamically generates its content by rendering an HTML page and populating it with data fetched from various routes of the URL: https://api.tgju.org or https://call1.tgju.org.
+
+	Each page on the TGJU website is assembled by concatenating this base URL with different routes, allowing access to a wide range of data related to gold, jewelry, and coin prices.
+
+	\subsubsection{Models}
+
+	\begin{itemize}
+	  \item \texttt{profiles.py}
+
+	  A list of all the TGJU's items
+
+   		Update Frequency (s): None (Static)
+
+	  Type: API
+
+	  Route: https://call1.tgju.org/ajax.json?
+
+
+	  \item \texttt{profiles\_current.py}
+
+	  A list of all the TGJU's items having current rates and prices
+
+	 Update Frequency (s): 5
+
+	  Type: API
+
+	  Route: https://call1.tgju.org/ajax.json?
+
+	  \sectionCenteredfigure[0.7]{\ProfilesCurrent}{Profiles Current}{profiles-current}
+
+
+	  \item \texttt{profiles\_at\_a\_glance.py}
+
+	  Update Frequency (s): 5
+
+	  Type: HTML
+
+	  Route: /profile/{id}
+
+	  \sectionCenteredfigure[0.4]{\AtAGlance}{At A Glance}{at-a-glance}
+
+	  \item \texttt{profiles\_performance.py}
+
+	  Type: HTML
+
+	  Route: /profile/{id}/performance
+
+	  Where id the the list of profiles
+	  \sectionCenteredfigure[0.7]{\Performance}{Performance}{performance}
+
+	  \item \texttt{profiles\_summary.py}
+
+		Update Frequency (s): 5
+
+	  Type: API
+
+	  Route: /v1/market/indicator/summary-table-data/{id}
+
+	  \sectionCenteredfigure[0.7]{\Summary}{Summary}{summary}
+
+	  \item \texttt{profiles\_today.py}
+
+	  Update Frequency (s): 5
+
+	  Type: API
+
+	  Route: /v1/market/indicator/today-table-data/{id}
+
+	  Where id the the list of profiles
+	  \sectionCenteredfigure[0.7]{\Today}{Today}{today}
+
+	\end{itemize}
+
+	\subsubsection{DAOs}
+
+	The following DAOs are included:
+
+	\begin{itemize}
+	  \item \texttt{profiles\_at\_a\_glance\_dao.py}
+	  \item \texttt{profiles\_current\_dao.py}
+	  \item \texttt{profiles\_dao.py}
+	  \item \texttt{profiles\_performance\_dao.py}
+	  \item \texttt{profiles\_summary\_dao.py}
+	  \item \texttt{profiles\_today\_dao.py}
+	\end{itemize}
+
+	\subsubsection{Services}
+
+	The following services are included:
+
+	\begin{itemize}
+	  \item \texttt{profiles\_at\_a\_glance\_service.py}
+	  \item \texttt{profiles\_current\_service.py}
+	  \item \texttt{profiles\_performance\_service.py}
+	  \item \texttt{profiles\_service.py}
+	  \item \texttt{profiles\_summary\_service.py}
+	  \item \texttt{profiles\_today\_service.py}
+	\end{itemize}
+
+	\subsubsection{Scrapers}
+
+	The following scrapers are included:
+
+	\begin{itemize}
+	  \item \texttt{current\_profiles\_scraper.py}
+	  \item \texttt{profiles\_at\_a\_glance\_scraper.py}
+	  \item \texttt{profiles\_performance\_scraper.py}
+	  \item \texttt{profiles\_scraper.py}
+	  \item \texttt{profiles\_summary\_scraper.py}
+	  \item \texttt{profiles\_today\_scraper.py}
+	\end{itemize}
+
+
+	\newpage
+	\subsection{CBI}
+	The \hyperlink{https://www.cbi.ir/}{CBI} (Central Bank Iran) scraper module is responsible for extracting and processing data related to yearly inflation rates from the CBI website.
+
+	The CBI website renders an HTML page statically, so we chose to scrape the HTML page using the URL: https://www.cbi.ir/Inflation/Inflation\_FA.aspxg.
+
+	Because this website uses authentication, we had to use Selenium to render the complete web page and then scrape the relative data from it. (we are working on a workaround!)
+
+	\subsubsection{Models}
+
+	\begin{itemize}
+	  \item \texttt{inflation\_rate\_yearly.py}
+
+	  A model for all the inflation entities
+
+	  Update Frequency (s): 86400 (daily)
+
+	  Type: HTML
+
+	  Route: https://www.cbi.ir/Inflation/Inflation\_FA.aspx
+
+	  \sectionCenteredfigure[0.7]{\Inflation}{Inflation}{inflation}
+
+	\end{itemize}
+
+	\subsubsection{DAOs}
+
+	The following DAOs are included:
+
+	\begin{itemize}
+	  \item \texttt{inflation\_rate\_yearly\_dao.py}
+	\end{itemize}
+
+	\subsubsection{Services}
+
+	The following services are included:
+
+	\begin{itemize}
+	  \item \texttt{inflation\_rate\_yearly\_service.py}
+	\end{itemize}
+
+	\subsubsection{Scrapers}
+
+	The following scrapers are included:
+
+	\begin{itemize}
+	  \item \texttt{inflation\_rate\_yearly\_scraper.py}
+	\end{itemize}}
+
+	\newpage
+	\subsection{CODAL}
+	The \hyperlink{https://www.codal.ir/}{CODAL} (Comprehensive DataBase Of All Listed Companies) scraper module is responsible for extracting and processing data related to letters published from the CODAL website.
+
+	\subsubsection{Models}
+
+	\begin{itemize}
+
+		\item \texttt{letter.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		Type: API
+
+		\item \texttt{letters\_map.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		Type: HTML
+
+		\item \texttt{tables.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		Type: HTML
+
+		\item \texttt{sheets.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		Type: HTML
+
+		\item \texttt{cells.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		Type: HTML
+
+		\item \texttt{letter\_headers.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		Type: HTML
+
+	\end{itemize}
+
+	\subsubsection{DAOs}
+
+	\begin{itemize}
+	\item \texttt{cells\_dao.py}
+
+
+	\item \texttt{letter\_dao.py}
+
+
+	\item \texttt{letters\_map\_dao.py}
+
+
+	\item \texttt{letter\_headers\_dao.py}
+
+
+	\item \texttt{sheets\_dao.py}
+
+
+	\item \texttt{tables\_dao.py}
+
+	\end{itemize}
+
+	\subsubsection{Services}
+
+	\begin{itemize}
+	\item \texttt{cells\_service.py}
+
+
+	\item \texttt{letter\_service.py}
+
+
+	\item \texttt{letters\_map\_service.py}
+
+
+	\item \texttt{letter\_headers\_service.py}
+
+
+	\item \texttt{sheets\_service.py}
+
+
+	\item \texttt{tables\_service.py}
+
+	\end{itemize}
+
+	\subsubsection{Scrapers}
+
+	\begin{itemize}
+		\item \texttt{cells\_scraper.py}
+
+
+		\item \texttt{letter\_scraper.py}
+
+
+		\item \texttt{letters\_map\_scraper.py}
+
+
+		\item \texttt{letter\_headers\_scraper.py}
+
+
+		\item \texttt{sheets\_scraper.py}
+
+
+		\item \texttt{tables\_scraper.py}
+
+	\end{itemize}
+
+	\newpage
+	\subsection{FIPIRAN}
+	\configuratedText{The \hyperlink{https://www.fipiran.com}{Fipiran} (Financial Information Processing of IRAN) scraper module is responsible for extracting and processing data related to daily rates of different indexes from the Fipiran website.
+
+	The Fipiran website returns an excel given a 3 input parameters:
+		\begin{itemize}
+		\item 	Date begin
+		\item 	Date End
+		\item 	Index Name
+		\end{itemize}
+	Investigating this website, we found out that when we send a request with these parameters to the URL:
+
+	https://fipiran.com/DataService/Exportindex,
+
+	we can retrieve the list of given index daily rates.
+
+	Moreover, we simulated the index search operation by sending a request to the URL:
+
+	https://fipiran.com/DataService/AutoCompleteindex,
+
+	We can retrieve the corresponding list of the indexes.
+
+	\subsubsection{Models}
+
+	\begin{itemize}
+	  \item \texttt{index.py}
+
+	  A list of all the index rates daily
+
+	  Update Frequency (s): 86400 (daily)
+
+	  Type: HTML
+
+	  Route: /DataService/Exportindex
+
+
+	  \sectionCenteredfigure[0.2]{\Index}{Index Daily Rates}{index}
+
+	  \item \texttt{indexes\_it.py}
+
+	  A simulation of searching for index ids
+
+	  Update Frequency (s): None (Static)
+
+	  Type: HTML
+
+	  Route: /DataService/AutoCompleteindex
+
+	  \sectionCenteredfigure[0.5]{\IndexIds}{Index Id Search Simulation}{index-id}
+
+
+	\end{itemize}
+
+	\subsubsection{DAOs}
+
+	The following DAOs are included:
+
+	\begin{itemize}
+	  \item \texttt{index\_dao.py}
+	  \item \texttt{indexes\_id\_dao.py}
+	\end{itemize}
+
+	\subsubsection{Services}
+
+	The following services are included:
+
+	\begin{itemize}
+	  \item \texttt{index\_service.py}
+	  \item \texttt{indexes\_id\_service.py}
+	\end{itemize}
+
+	\subsubsection{Scrapers}
+
+	The following scrapers are included:
+
+	\begin{itemize}
+	  \item \texttt{index\_scraper.py}
+	  \item \texttt{indexes\_id\_scraper.py}
+	\end{itemize}
+
+
+	\newpage
+	\subsection{IME}
+	The \hyperlink{https://www.ime.co.ir//}{IME} (Iran Mercantile Exchange) scraper module is responsible for extracting and processing data related to trade metals, minerals, petrochemicals and agricultural commodities from the IME website.
+
+	The IME website dynamically generates its content by rendering an HTML page and populating it with data in the responses of a set of POST requests from various routes of the URLs.
+
+	Each page on the IME website is assembled by concatenating this base URL with different routes, allowing access to a wide range of data.
+
+	\subsubsection{Models}
+
+	\begin{itemize}
+		\item \texttt{category\_groups.py}
+
+		Update Frequency (s): None (Static)
+
+		URL: /subsystems/ime/services/home/imedata.asmx/GetCatGroups
+
+		Type: HTML
+
+	  \sectionCenteredfigure[0.2]{\Category}{Category}{index-id}
+
+		\item \texttt{main\_groups.py}
+
+		Update Frequency (s): None (Static)
+
+		URL: /subsystems/ime/services/home/imedata.asmx/GetMainGroups
+
+		Type: HTML
+
+	  \sectionCenteredfigure[0.3]{\MainGroups}{Main Groups}{main-groups}
+
+		\item \texttt{physical\_transaction.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		URL: /subsystems/ime/services/home/imedata.asmx/GetAmareMoamelatList
+
+		Type: HTML
+
+	  	\sectionCenteredfigure[0.9]{\PhysicalTransactions}{Producers Groups}{producer-group}
+
+		\item \texttt{producer\_groups.py}
+
+		Update Frequency (s): None (Static)
+
+		URL: /subsystems/ime/services/home/imedata.asmx/GetProducers
+
+		Type: HTML
+
+	  	\sectionCenteredfigure[0.2]{\Category}{Category}{category}
+
+		\item \texttt{sub\_category\_groups.py}
+
+		Update Frequency (s): None (Static)
+
+		URL: /subsystems/ime/services/home/imedata.asmx/GetSubCatGroups
+
+		Type: HTML
+
+	  \sectionCenteredfigure[0.2]{\SubCategoryGroups}{Sub Category Groups}{sub-category-groups}
+
+	\end{itemize}
+
+	\subsubsection{DAOs}
+
+	The following DAOs are included:
+
+	\begin{itemize}
+		\item \texttt{category\_groups\_dao.py}
+
+
+		\item \texttt{main\_groups\_dao.py}
+
+
+		\item \texttt{physical\_transaction\_dao.py}
+
+
+		\item \texttt{producer\_groups\_dao.py}
+
+
+		\item \texttt{sub\_category\_groups\_dao.py}
+
+	\end{itemize}
+
+	\subsubsection{Services}
+
+	The following services are included:
+
+	\begin{itemize}
+		\item \texttt{category\_groups\_service.py}
+
+
+		\item \texttt{main\_groups\_service.py}
+
+
+		\item \texttt{physical\_transaction\_service.py}
+
+
+		\item \texttt{producer\_groups\_service.py}
+
+
+		\item \texttt{sub\_category\_groups\_service.py}
+
+	\end{itemize}
+
+	\subsubsection{Scrapers}
+
+	The following scrapers are included:
+
+	\begin{itemize}
+		\item \texttt{category\_groups\_scraper.py}
+
+
+		\item \texttt{main\_groups\_scraper.py}
+
+
+		\item \texttt{physical\_transaction\_scraper.py}
+
+
+		\item \texttt{producer\_groups\_scraper.py}
+
+
+		\item \texttt{sub\_category\_groups\_scraper.py}
+	\end{itemize}
+
+	\newpage
+	\subsection{Trading Economics}
+	The \hyperlink{https://tradingeconomics.com}{Trading Economics} scraper module is responsible for extracting and processing data related to economic indicators from the Trading Economics website.
+
+	\subsubsection{Models}
+
+	\begin{itemize}
+		\item \texttt{categories.py}
+
+		Update Frequency (s): None (Static)
+
+		Type: HTML
+	  	\sectionCenteredfigure[0.2]{\Categories}{Categories}{categories}
+
+		\item \texttt{profiles.py}
+
+		Update Frequency (s): None (Static)
+
+		Type: HTML
+
+		\sectionCenteredfigure[0.8]{\Profiles}{Profiles}{profiles}
+
+		\item \texttt{profiles\_history.py}
+
+		Update Frequency (s): 86400 (daily)
+
+		Type: HTML
+
+		Route: /chart/{type}?interval=1d\&span=4y\&securify=new\&url={link}\&AUTH={auth}
+
+		\sectionCenteredfigure[0.8]{\ProfilesHistory}{Profiles History}{profiles-history}
+
+	\end{itemize}
+
+	\subsubsection{DAOs}
+
+	The following DAOs are included:
+
+	\begin{itemize}
+		\item \texttt{categories\_dao.py}
+		\item \texttt{profiles\_dao.py}
+		\item \texttt{profiles\_history\_dao.py}
+	\end{itemize}
+
+	\subsubsection{Services}
+
+	The following services are included:
+
+	\begin{itemize}
+		\item \texttt{categories\_service.py}
+		\item \texttt{profiles\_service.py}
+		\item \texttt{profiles\_history\_service.py}
+	\end{itemize}
+
+	\subsubsection{Scrapers}
+
+	The following scrapers are included:
+
+	\begin{itemize}
+		\item \texttt{categories\_scraper.py}
+		\item \texttt{profiles\_scraper.py}
+		\item \texttt{profiles\_history\_scraper.py}
+	\end{itemize}
+	\newpage
+	\section{Engine (Overview)}
+	The engine utilizes multiprocessing to enhance efficiency in executing scraping tasks. Here's a breakdown of its functionality:
+
+	\subsection*{Configuration Retrieval}
+
+	The engine begins by retrieving JSON configuration files from a designated directory. These files contain information about various scraping tasks, such as update frequency, request URLs, and scraper type.
+
+	\subsection*{Task Execution Setup}
+
+	For each task extracted from the configuration files, the engine prepares for execution. If an update frequency is specified, it sets up a scheduling mechanism using the \texttt{schedule} library. This mechanism ensures periodic execution of tasks at the defined intervals.
+
+	\subsection*{Parallelized Task Execution}
+
+	Upon triggering, the engine initiates the execution of each task. For tasks with an update frequency, it repeatedly schedules the execution of the scraping function. For each scheduled execution, a multiprocessing pool is created. Within this pool, individual processes are spawned, each responsible for handling a specific URL request. This parallelization allows for efficient utilization of system resources and faster task completion.
+
+	\subsection*{Request Handling}
+
+	As each process executes, it handles individual URL requests by extracting relevant information such as scraper name and initializing the appropriate scraper module. The scraper module then proceeds to carry out the scraping operation. Upon completion, the engine logs the start and finish times for each scraper.
+
+	\subsection*{Orchestration}
+
+	Finally, the engine orchestrates the execution of all tasks retrieved from the configuration files. It does so by spawning separate multiprocessing processes for each task and invoking the execution setup process for each process.}
+
+\end{document}

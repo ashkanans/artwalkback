@@ -1,0 +1,40 @@
+from sqlalchemy import Column, Float, Integer, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+
+class OilPriceID(Base):
+    __tablename__ = 'ID'
+    last_close_price = Column(String(255), nullable=True)
+    last_price = Column(Float, nullable=True)
+    change_percent = Column(Float, nullable=True)
+    change_direction = Column(String(255), nullable=True)
+    amount = Column(Integer, nullable=True)
+    time_dif = Column(DateTime, nullable=True)
+    last_time = Column(DateTime, nullable=True)
+    end_time = Column(DateTime, nullable=True)
+    nulls = Column(Integer, nullable=True)
+    min = Column(String(255), nullable=True)
+    max = Column(String(255), nullable=True)
+    change = Column(Float, nullable=True)
+    id = Column(String(255), primary_key=True)
+    blend_name = Column(String(255), nullable=True)
+    spreadsheet_name = Column(String(255), nullable=True)
+    flag = Column(String(255), nullable=True)
+    location = Column(String(255), nullable=True)
+    section = Column(String(255), nullable=True)
+    order = Column(String(255), nullable=True)
+    day_template_order = Column(String(255), nullable=True)
+    update_text = Column(String(255), nullable=True)
+    chart_periods = Column(String(255), nullable=True)
+    last_price_timestamp = Column(DateTime, nullable=True)
+    breaks = Column(String(255), nullable=True)
+    formula = Column(String(255), nullable=True)
+    hide = Column(String(255), nullable=True)
+    source = Column(String(255), nullable=True)
+    technicals_symbol = Column(String(255), nullable=True)
+    technicals_enabled = Column(String(255), nullable=True)
+    volume = Column(String(255), nullable=True)
+    prev_volume = Column(String(255), nullable=True)
+    open = Column(String(255), nullable=True)

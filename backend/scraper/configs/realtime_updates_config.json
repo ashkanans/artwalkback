@@ -1,0 +1,174 @@
+{
+  "scraper_type": "realtime",
+  "update_frequency": "5",
+  "requests_urls": [
+    {
+      "name": "PriceTable",
+      "url": "",
+      "type": "none",
+      "UpdateFrequency": "1",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      }
+    },
+    {
+      "name": "FinalMpr",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      },
+      "instruments": [
+        "کنور",
+        "كگل",
+        "فخوز",
+        "كگهر",
+        "كچاد",
+        "فملي",
+        "فولاد",
+        "ذوب",
+        "فباهنر",
+        "ارفع",
+        "كوير",
+        "فسبزوار",
+        "فسرب",
+        "فسازان",
+        "کدما",
+        "کمنگنز",
+        "کبافق",
+        "فزر",
+        "کرومیت",
+        "کاما",
+        "شرانل",
+        "شبهرن",
+        "شنفت",
+        "شسپا"
+      ]
+    },
+    {
+      "name": "MonthlyPerformance",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      },
+      "instruments": [
+        "کنور",
+        "كگل",
+        "فخوز",
+        "كگهر",
+        "كچاد",
+        "فملي",
+        "فولاد",
+        "ذوب",
+        "فباهنر",
+        "ارفع",
+        "كوير",
+        "فسبزوار",
+        "فسرب",
+        "فسازان",
+        "کدما",
+        "کمنگنز",
+        "کبافق",
+        "فزر",
+        "کرومیت",
+        "کاما",
+        "شرانل",
+        "شبهرن",
+        "شنفت",
+        "شسپا"
+      ]
+    },
+    {
+      "name": "SectorStockPrice",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      },
+      "sectors": {
+        "13": [
+          "کدما",
+          "کمنگنز",
+          "کبافق",
+          "فزر",
+          "کرومیت",
+          "کاما",
+          "فسازان",
+          "کگل",
+          "كگهر",
+          "کچاد",
+          "كنور"
+        ],
+        "27": [
+          "فخوز",
+          "فملي",
+          "فولاد",
+          "ذوب",
+          "فباهنر",
+          "ارفع",
+          "كوير",
+          "فسبزوار",
+          "فسرب",
+          "فسازان"
+        ],
+        "23": [
+          "شرانل",
+          "شبهرن",
+          "شنفت",
+          "شسپا",
+          "فسازان"
+        ]
+      }
+    },
+    {
+      "name": "TseSymbolsReport",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      }
+    },
+    {
+      "name": "TseMarketView",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      }
+    },
+    {
+      "name": "TseIndustryIndexes",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      }
+    },
+    {
+      "name": "IncomeStatement",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      }
+    },
+    {
+      "name": "InventoryLetter",
+      "url": "",
+      "type": "none",
+      "siteName": "realtimedata",
+      "ResponseType": "None",
+      "header": {
+      }
+    }
+  ]
+}

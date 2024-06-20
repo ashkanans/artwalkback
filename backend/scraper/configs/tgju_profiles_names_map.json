@@ -1,0 +1,53 @@
+{
+  "p2e_table_names_map": {
+    "ProfilesPerformance": {
+      "عملکرد": "Performance"
+    },
+    "ProfilesAtAGlance": {
+      "در یک نگاه": "At a Glance"
+    }
+  },
+  "p2e_pa_col_names_map": {
+    "بازگشایی": "Opening",
+    "کمترین": "Minimum",
+    "بیشترین": "Maximum",
+    "پایانی": "Closing",
+    "میزان تغییر": "Change Amount",
+    "درصد تغییر": "Percentage Change",
+    "تاریخ / میلادی": "Date Gregorian",
+    "تاریخ / شمسی": "Date Solar"
+  },
+  "p2e_p_col_names_map": {
+    "نام": "Date",
+    "روز": "Day",
+    "یک هفته": "One Week",
+    "یک ماه": "One Month",
+    "شش ماه": "Six Months",
+    "یک سال": "One Year",
+    "سه سال": "Three Years"
+  },
+  "p2e_t_col_names_map": {
+    "قیمت": "Price",
+    "زمان": "Time",
+    "مقدار تغییر نسبت به نرخ قبلی": "Change Amount Relative to Previous Rate",
+    "درصد تغییر نسبت به نرخ قبلی": "Percentage Change Relative to Previous Rate",
+    "مقدار تغییر نسبت به نرخ روز گذشته": "Change Amount Relative to Previous Day Rate",
+    "درصد تغییر نسبت نرخ روز گذشته": "Percentage Change Relative to Previous Day Rate",
+    "مقدار تغییر نسبت به نرخ بازگشایی": "Change Amount Relative to Opening Rate",
+    "درصد تغییر نسبت نرخ بازگشایی": "Percentage Change Relative to Opening Rate",
+    "مقدار تغییر نسبت به بالاترین نرخ هفته": "Change Amount Relative to Highest Weekly Rate",
+    "مقدار تغییر نسبت به میانگین نرخ هفته": "Change Amount Relative to Weekly Average Rate"
+  },
+  "p2e_pag_col_names_map": {
+    "نرخ فعلی": "Current Rate",
+    "بالاترین قیمت روز": "Highest Daily Price",
+    "پایین ترین قیمت روز": "Lowest Daily Price",
+    "بیشترین مقدار نوسان روز": "Maximum Daily Fluctuation",
+    "درصد بیشترین نوسان روز": "Percentage of Maximum Daily Fluctuation",
+    "نرخ بازگشایی بازار": "Market Opening Rate",
+    "زمان ثبت آخرین نرخ": "Last Rate Registration Time",
+    "نرخ روز گذشته": "Previous Day Rate",
+    "درصد تغییر نسبت به روز گذشته": "Percentage Change Compared to Previous Day",
+    "میزان تغییر نسبت به روز گذشته": "Amount of Change Compared to Previous Day"
+  }
+}

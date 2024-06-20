@@ -1,0 +1,16 @@
+{
+  "base": "/api",
+  "child": {
+    "tsetmc": {
+      "base": "/tsetmc",
+      "routes": [
+        "/stockInfo",
+        "/indexInfo",
+        "/enteredMoney",
+        "/returnInfo",
+        "/importantFilters",
+        "/option"
+      ]
+    }
+  }
+}

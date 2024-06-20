@@ -1,0 +1,103 @@
+stages:
+  - setup
+  - test_authentication
+  - test_tsetmc
+#  - test_commodity
+#  - test_codal
+#  - test_services
+
+check_dependencies:
+  stage: setup
+  script:
+    - pip install -r requirements.txt --quiet
+    - pip list
+  artifacts:
+    paths:
+      - requirements.txt
+      - requirements.lock
+      
+run_test_authenticate:
+  stage: test_authentication
+  script:
+    - python -m unittest -v backend.tests.api.auth.authenticate
+  retry: 2
+
+run_test_signup:
+  stage: test_authentication
+  script:
+    - python -m unittest -v backend.tests.api.auth.signup
+  retry: 2
+  needs: ["run_test_authenticate"]
+
+#run_test_commodity_bi_ids:
+#  stage: test_commodity
+#  script:
+#    - python -m unittest -v backend.tests.test_commodity_bi_ids
+#  retry: 2
+#
+#run_test_commodity_bi_list:
+#  stage: test_commodity
+#  script:
+#    - python -m unittest -v backend.tests.test_commodity_bi_list
+#  retry: 2
+#  needs: ["run_test_commodity_bi_ids"]
+
+# run_test_count_occurrences:
+#   stage: test
+#   script:
+#     - python -m unittest -v backend.tests.test_count_occurrences
+#   retry: 2
+#
+
+run_test_tsetmc_enteredMoney:
+  stage: test_tsetmc
+  script:
+    - python -m unittest -v backend.tests.api.tsetmc.enteredMoney
+  retry: 2
+
+run_test_tsetmc_returnInfo:
+  stage: test_tsetmc
+  script:
+    - python -m unittest -v backend.tests.api.tsetmc.returnInfo
+  retry: 2
+  needs: ["run_test_tsetmc_enteredMoney"]
+
+run_test_tsetmc_stockInfo:
+  stage: test_tsetmc
+  script:
+    - python -m unittest -v backend.tests.api.tsetmc.stockInfo
+  retry: 2
+  needs: ["run_test_tsetmc_returnInfo"]
+
+test_tsetmc_importantFilters:
+  stage: test_tsetmc
+  script:
+    - python -m unittest -v backend.tests.api.tsetmc.importantFilters
+  retry: 2
+  needs: [ "run_test_tsetmc_stockInfo" ]
+#
+#run_test_codal_symbols:
+#  stage: test_codal
+#  script:
+#    - python -m unittest -v backend.tests.test_codal_symbols
+#  retry: 2
+#
+#run_test_codal_groups:
+#  stage: test_codal
+#  script:
+#    - python -m unittest -v backend.tests.test_codal_groups
+#  retry: 2
+#  needs: [ "run_test_codal_symbols" ]
+#
+#run_test_services_count_occurrences:
+#  stage: test_services
+#  script:
+#    - python -m unittest -v backend.tests.test_services_count_occurrences
+#  retry: 2
+#
+#run_test_services_file_to_text:
+#  stage: test_services
+#  script:
+#    - python -m unittest -v backend.tests.test_services_file_to_text
+#  retry: 2
+#  needs: [ "run_test_services_count_occurrences" ]
