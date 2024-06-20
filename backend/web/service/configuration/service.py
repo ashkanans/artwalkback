@@ -4,18 +4,19 @@ from sqlalchemy.orm import sessionmaker
 from backend.database_config.config import SQL_SERVER_URL
 from backend.web.model.configuration.stock_table_columns import StockTableColumns
 
+
 # Creating the SQLAlchemy engine
-engine = create_engine(SQL_SERVER_URL)
-Session = sessionmaker(bind=engine)
-session = Session()
+
 
 
 class ConfigurationService:
     def __init__(self):
-        pass
+        self.engine = create_engine(SQL_SERVER_URL)
+        self.Session = sessionmaker(bind=self.engine)
+        self.session = self.Session()
 
     def insert_stock_table_configurations_for_user(self, username):
-        existing_user = session.query(StockTableColumns).filter_by(Username=username).first()
+        existing_user = self.session.query(StockTableColumns).filter_by(Username=username).first()
 
         if existing_user:
             return "User already exists in the table"
@@ -45,27 +46,27 @@ class ConfigurationService:
                 status=True
             )
 
-            session.add(new_user_config)
-            session.commit()
+            self.session.add(new_user_config)
+            self.session.commit()
 
             return "User configuration inserted successfully"
 
     def update_stock_table_configurations_for_user(self, username, **kwargs):
-        existing_user = session.query(StockTableColumns).filter_by(Username=username).first()
+        existing_user = self.session.query(StockTableColumns).filter_by(Username=username).first()
 
         if existing_user:
             for key, value in kwargs.items():
                 if hasattr(existing_user, key):
                     setattr(existing_user, key, value)
 
-            session.commit()
+            self.session.commit()
 
             return "User configuration updated successfully"
         else:
             return "User does not exist in the table"
 
     def get_stock_table_configurations_for_user(self, username):
-        user_config = session.query(StockTableColumns).filter_by(Username=username).first()
+        user_config = self.session.query(StockTableColumns).filter_by(Username=username).first()
 
         if user_config:
             config_dict = {column.name: getattr(user_config, column.name) for column in user_config.__table__.columns}
