@@ -7,16 +7,19 @@ from backend.web.dao.user import UserDAO
 from backend.web.model.user import User
 from backend.web.service.configuration.service import ConfigurationService
 
+
 # Creating the SQLAlchemy engine
-engine = create_engine(SQL_SERVER_URL)
-Session = sessionmaker(bind=engine)
-session = Session()
 
 
 class UserService:
+
     def __init__(self):
-        self.user_dao = UserDAO(session)
+
         self.configuration_service = ConfigurationService()
+        self.engine = create_engine(SQL_SERVER_URL)
+        self.Session = sessionmaker(bind=self.engine)
+        session = self.Session()
+        self.user_dao = UserDAO(session)
 
     def create_user(self, username: str, email: str, password: str, name: str, sirname: str) -> User:
         password_hash = generate_password_hash(password)
