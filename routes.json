@@ -10,7 +10,8 @@
       "routes": [
         "/authenticate",
         "/signup",
-        "/places"
+        "/places",
+        "/placeTypes"
       ]
     }
   }

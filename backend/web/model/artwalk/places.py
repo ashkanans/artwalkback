@@ -18,7 +18,7 @@ class AWPlaces:
         return {
             "id": self.id,
             "displayName": self.displayName,
-            "types": self.types,
+            "placeTypes": self.types,
             "location": self.location,
             "viewport": self.viewport,
             "rating": self.rating,
@@ -49,7 +49,7 @@ class AWPlaces:
         return {
             "id": id,
             "displayName": displayName,
-            "types": types,
+            "placeTypes": types,
             "location": location,
             "viewport": viewport,
             "rating": rating,

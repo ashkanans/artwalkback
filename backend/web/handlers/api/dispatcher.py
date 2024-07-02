@@ -20,10 +20,15 @@ def load_handler(route):
     try:
         handler_module = importlib.import_module(module_name)
         handler_class = getattr(handler_module, handler_name)
-        return handler_class
+        return handler_class, None
     except Exception as e:
-        # Handle import or attribute errors
-        return None
+        tb = traceback.TracebackException.from_exception(e)
+        trace_info = ''.join(tb.format())
+        error_details = {
+            'exception': str(e),
+            'trace': trace_info
+        }
+        return None, error_details
 
 
 class RequestDispatcher:
@@ -34,7 +39,7 @@ class RequestDispatcher:
         self.routes[route] = handler
 
     def dispatch_request(self, route, request) -> dict:
-        handler_class = load_handler(route)
+        handler_class, message = load_handler(route)
         if handler_class:
             handler_instance = handler_class(Authenticator())
             try:
@@ -53,7 +58,10 @@ class RequestDispatcher:
                     error_details
                 )
         else:
-            return self.handle_not_found(route)
+            return MESSAGES['AUTHENTICATION']['CUSTOM_MESSAGE'](
+                    f'Error processing request for route: {route}',
+                    message
+                )
 
     def handle_not_found(self, route):
         return MESSAGES['AUTHENTICATION']['CUSTOM_MESSAGE']('error', f'Route {route} not found')

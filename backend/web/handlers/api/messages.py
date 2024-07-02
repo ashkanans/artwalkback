@@ -13,7 +13,7 @@ MESSAGES = {
     'FILE_UPLOAD': {
         'NO_FILE_SELECTED': {'error': 'No file selected'},
         'NOT_SUPPORTED_FILE': {
-            'error': 'Not supported file, Please upload a file having types: .pdf, .jpg, .jpeg, .png, .bmp'},
+            'error': 'Not supported file, Please upload a file having placeTypes: .pdf, .jpg, .jpeg, .png, .bmp'},
         'FAILED_TO_CONVERT_PDF': lambda convert_response: {
             'error': f'Failed to convert PDF file: Error {convert_response.status_code}'},
         'FAILED_TO_ADD_PDF': lambda response_data: {

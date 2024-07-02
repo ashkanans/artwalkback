@@ -17,7 +17,7 @@ class ArtwalkPlacesHandler:
         try:
 
             places_tuple = self.places_dao.read_all_places()
-            places_dict = [AWPlaces.from_tuple(single_tuple) for single_tuple in places_tuple[1:2]]
+            places_dict = [AWPlaces.from_tuple(single_tuple) for single_tuple in places_tuple]
 
             self.response = places_dict
             return self.response

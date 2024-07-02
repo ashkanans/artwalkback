@@ -5,7 +5,6 @@ from flask import Request
 
 from backend.web.dao.artwalk.users_dao import UsersDAO
 from backend.web.handlers.api.messages import MESSAGES
-from backend.web.service.user import UserService
 
 app_secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
@@ -14,7 +13,6 @@ class Authenticator:
     def __init__(self):
         self._username = None
         self._user_id = None
-        self.user_service = UserService()
         self._token_based_authenticator = None
         self._username_password_based_authenticator = None
         self._authorized = None
@@ -59,9 +57,10 @@ class Authenticator:
             user_id = token_payload.get('id')
             username = token_payload.get('username')
             if user_id:
-                user = self.user_service.get_user_by_id(user_id)
+                user = False
+                # user = self.user_service.get_user_by_id(user_id)
                 if user:
-                    return user.username == username, username, user_id
+                    return True
         except jwt.ExpiredSignatureError as e:
             return False, None, None
         except jwt.InvalidTokenError as e:

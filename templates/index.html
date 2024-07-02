@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Art Walk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0.2em 0;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+        }
+        .btn {
+            margin-top: 1em;
+            padding: 0.8em 2em;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #ff758c;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn:hover {
+            background-color: #ff7eb3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Art Walk</h1>
+        <p>Your journey into the world of art starts here.</p>
+        <button class="btn" onclick="startApp()">Get Started</button>
+    </div>
+
+    <script>
+        function startApp() {
+            // Logic to start the app can be added here
+            alert('Starting the Art Walk app!');
+        }
+    </script>
+</body>
+</html>
