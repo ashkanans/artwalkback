@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from keras.src.saving import load_model
 
+from backend.database_config.database_artwalk.config import DB_PATH
 from nn.database.config import DB_PATH_PC
 
 
@@ -11,7 +12,7 @@ def predict_path(start_id, end_id, time_span, scaler, encoded_types, model_path)
     model = load_model(model_path)
 
     conn = sqlite3.connect(
-        DB_PATH_PC)
+        DB_PATH)
     # Define the values to filter for in the types column
     filter_values = ['historical_landmark', 'landmark', 'museum', 'tourist_attraction']
 
