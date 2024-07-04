@@ -11,7 +11,8 @@
         "/authenticate",
         "/signup",
         "/places",
-        "/placeTypes"
+        "/placeTypes",
+        "/predict"
       ]
     }
   }

@@ -82,6 +82,29 @@ class PlacesDAO:
         conn.commit()
         conn.close()
 
+    def get_display_names_by_ids(self, place_ids):
+        """
+        Fetches display names of places based on their IDs.
+
+        Args:
+            place_ids (list of str): List of place IDs.
+
+        Returns:
+            list of str: List of display names corresponding to the given place IDs.
+        """
+        conn = sqlite3.connect(self.db_name)
+        cursor = conn.cursor()
+
+        # Prepare placeholders for the SQL query
+        placeholders = ','.join(['?'] * len(place_ids))
+
+        # Fetch display names for the given place IDs
+        cursor.execute(f'''SELECT displayName FROM places WHERE id IN ({placeholders})''', place_ids)
+        display_names = [row[0] for row in cursor.fetchall()]
+
+        conn.close()
+        return display_names
+
     def get_place_id_by_location(self, location):
         """
         Fetches the ID of a place from the table based on its location information.

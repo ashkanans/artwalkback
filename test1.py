@@ -1,14 +1,11 @@
 import random
 import time
-
 import requests
-
 from backend.web.dao.artwalk.places_dao import PlacesDAO
 from backend.web.dao.artwalk.routes_dao import RoutesDAO
 
 # Replace with your Google Maps API key
 API_KEY = "AIzaSyBHNVBV2-gb5Jl-b84JeGt6zsMWLZ6E8J8"
-
 
 def get_walking_distances(origins, destinations):
     """
@@ -45,13 +42,16 @@ def get_walking_distances(origins, destinations):
         "key": API_KEY
     }
 
-    try:
-        # Send request and get response
-        response = requests.get(url, params=params)
-        response.raise_for_status()  # Raise an exception for bad requests
-    except requests.RequestException as e:
-        print(f"Error during API request: {e}")
-        return
+    while True:
+        try:
+            # Send request and get response
+            response = requests.get(url, params=params)
+            response.raise_for_status()  # Raise an exception for bad requests
+            break  # Exit the loop if the request is successful
+        except requests.RequestException as e:
+            print(f"Error during API request: {e}")
+            print("Waiting for 60 seconds before retrying...")
+            time.sleep(60)
 
     # Parse JSON response
     data = response.json()
@@ -79,7 +79,6 @@ def get_walking_distances(origins, destinations):
                 print(
                     f"Missing distance or duration data for origin: {origins[origin_index]} and destination: {destinations[destination_index]}")
 
-
 # Example usage
 places_dao = PlacesDAO()
 routes_dao = RoutesDAO()
@@ -90,12 +89,10 @@ dests = places_dao.read_all_locations()
 origins.reverse()
 dests.reverse()
 
-
 # Chunking the list into smaller lists of 10 elements each
 def chunk_list(lst, chunk_size):
     for i in range(0, len(lst), chunk_size):
         yield lst[i:i + chunk_size]
-
 
 # Process chunks of 10 origins and destinations at a time
 origin_chunks = list(chunk_list(origins, 10))
